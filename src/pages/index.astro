@@ -1040,45 +1040,34 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <script>
+  <script is:inline>
     (function () {
-      /* ── Audience tabs ── */
-      const tabBtns = document.querySelectorAll(".tab-btn");
-      const tabPanels = document.querySelectorAll(".tab-panel");
-      tabBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          tabBtns.forEach((b) => {
-            b.classList.remove("active");
-            b.setAttribute("aria-selected", "false");
-          });
-          tabPanels.forEach((p) => p.classList.remove("active"));
-          btn.classList.add("active");
-          btn.setAttribute("aria-selected", "true");
-          document
-            .getElementById(btn.getAttribute("aria-controls") || "")
-            ?.classList.add("active");
-        });
-      });
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabPanels = document.querySelectorAll('.tab-panel');
 
-      /* ── Scroll reveal ── */
-      const revealEls = document.querySelectorAll(
-        "[data-reveal], [data-reveal-stagger]",
-      );
-      if ("IntersectionObserver" in window) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("revealed");
-                io.unobserve(entry.target);
+      if (tabBtns.length > 0) {
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('aria-controls');
+
+            // Update buttons
+            tabBtns.forEach(b => {
+              b.classList.remove('active');
+              b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+
+            // Update panels
+            tabPanels.forEach(panel => {
+              if (panel.id === targetId) {
+                panel.classList.add('active');
+              } else {
+                panel.classList.remove('active');
               }
             });
-          },
-          { threshold: 0.12 },
-        );
-        revealEls.forEach((el) => io.observe(el));
-      } else {
-        revealEls.forEach((el) => el.classList.add("revealed"));
+          });
+        });
       }
     })();
   </script>

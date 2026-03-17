@@ -24,5 +24,39 @@ const { title, description, canonical } = Astro.props;
       <slot />
     </main>
     <Footer />
+
+    <script is:inline>
+      (function () {
+        /* ── Scroll reveal ── */
+        const revealContent = () => {
+          const revealEls = document.querySelectorAll(
+            "[data-reveal], [data-reveal-stagger]"
+          );
+          
+          if ("IntersectionObserver" in window) {
+            const io = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add("revealed");
+                    io.unobserve(entry.target);
+                  }
+                });
+              },
+              { threshold: 0.12 }
+            );
+            revealEls.forEach((el) => io.observe(el));
+          } else {
+            revealEls.forEach((el) => el.classList.add("revealed"));
+          }
+        };
+
+        // Run on initial load
+        revealContent();
+
+        // Run on Astro page navigation (fixes issues with Astro's view transitions or client-side routing)
+        document.addEventListener('astro:after-swap', revealContent);
+      })();
+    </script>
   </body>
 </html>

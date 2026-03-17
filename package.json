@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/sitemap": "^3.1.2",
+    "@astrojs/react": "^5.0.0",
+    "@astrojs/sitemap": "^3.7.1",
     "@sanity/client": "^6.15.5",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^4.14.2",
+    "astro": "^6.0.5",
     "groq": "^3.36.0",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",

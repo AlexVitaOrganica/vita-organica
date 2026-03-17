@@ -1,0 +1,171 @@
+---
+import FormatTemplate from "../../components/manufacturing/FormatTemplate.astro";
+
+const benefits = [
+  {
+    title: "Precision Bioavailability",
+    description:
+      "Our soft gel technology ensures maximum absorption and consistent delivery of oil-based and fat-soluble formulations.",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20L12 2z"/></svg>`,
+  },
+  {
+    title: "Aromatic & Taste Masking",
+    description:
+      "Hermetically sealed shells completely mask unpleasant odors and tastes, improving consumer compliance for specialty oils.",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`,
+  },
+  {
+    title: "Extended Shelf Stability",
+    description:
+      "The airtight soft gel shell protects sensitive ingredients from oxidation and light, ensuring potency throughout the product lifecycle.",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>`,
+  },
+];
+
+const customizationOptions = [
+  {
+    title: "Shell Type",
+    description:
+      "Standard gelatin or plant-based vegan soft gel options available.",
+  },
+  {
+    title: "Shape & Size",
+    description: "Wide variety of oval, oblong, and round molds to suit your dosage.",
+  },
+  {
+    title: "Color & Opacity",
+    description:
+      "Full customization of shell color, transparency, and branding laser-etching.",
+  },
+  {
+    title: "Fill Material",
+    description:
+      "Expertise in suspensions, pastes, and complex oil-based active ingredients.",
+  },
+  {
+    title: "Retail Packaging",
+    description:
+      "High-barrier PET bottles, glass jars, or premium blister pack configurations.",
+  },
+  {
+    title: "Clear Labeling",
+    description:
+      "Full assistance with FDA-compliant supplement facts and claim verification.",
+  },
+];
+
+const capabilities = [
+  {
+    title: "Omega-3 Fish Oil",
+    description: "High-EPA/DHA · Lemon Oil Infused",
+    tag: "CARDIOVASCULAR",
+    tagColor: "blue",
+  },
+  {
+    title: "Vitamin D3 + K2",
+    description: "Coconut MCT Oil Base",
+    tag: "BONE HEALTH",
+    tagColor: "green",
+  },
+  {
+    title: "CBD / Hemlock Oil",
+    description: "Full Spectrum · Broad Spectrum",
+    tag: "WELLNESS",
+    tagColor: "purple",
+  },
+  {
+    title: "Coenzyme Q10 (CoQ10)",
+    description: "Ubiquinone · Rice Bran Oil Base",
+    tag: "ENERGY",
+    tagColor: "red",
+  },
+  {
+    title: "Black Seed Oil",
+    description: "Cold-Pressed · Organic",
+    tag: "IMMUNITY",
+    tagColor: "green",
+  },
+  {
+    title: "Curcumin / Turmeric",
+    description: "Enhanced Absorption Formula",
+    tag: "ANTI-INFLAMMATORY",
+    tagColor: "orange",
+  },
+];
+
+const proofStats = [
+  { num: "200M+", label: "Soft Gels Annually" },
+  { num: "99.9%", label: "Seal Integrity" },
+  { num: "60 Days", label: "Average Lead Time" },
+  { num: "USA", label: "Manufactured" },
+];
+
+const qualityStandards = [
+  {
+    title: "Hermetic Sealing",
+    description:
+      "Advanced rotary die technology ensures a one-piece, airtight seal for maximum product protection.",
+  },
+  {
+    title: "Content Uniformity",
+    description:
+      "High-precision filling pumps guarantee that every soft gel contains the exact specified dosage.",
+  },
+  {
+    title: "Rapid Disintegration",
+    description:
+      "Engineered shell thickness for optimal release profiles once consumed.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What is the MOQ for soft gel manufacturing?",
+    answer:
+      "Our soft gel MOQs typically start at 100,000 units per SKU to ensure industrial-scale efficiency and price competitiveness.",
+  },
+  {
+    question: "Do you offer vegan/vegetarian soft gels?",
+    answer:
+      "Yes, we offer advanced carrageenan-free and plant-based soft gel options for vegan-positioned brands.",
+  },
+  {
+    question: "Can you manufacture suspension formulas?",
+    answer:
+      "Our R&D team specializes in stabilizing complex suspensions and pastes within the soft gel shell.",
+  },
+  {
+    question: "How do you ensure zero leaking?",
+    answer:
+      "Every batch undergoes vacuum-leak testing and meticulous weight checks during the production run.",
+  },
+  {
+    question: "What is the shelf life of soft gel products?",
+    answer:
+      "Most soft gel products offer a 2-year shelf life when stored in high-barrier primary packaging.",
+  },
+  {
+    question: "Can I customize the color of my soft gels?",
+    answer:
+      "Absolutely. We can match specific brand colors and offer various levels of opacity.",
+  },
+  {
+    question: "Are your soft gels manufactured in the USA?",
+    answer:
+      "Yes, all our manufacturing partners operate in cGMP-certified and FDA-registered facilities in the United States.",
+  },
+];
+---
+
+<FormatTemplate
+  formatName="Soft Gel"
+  heroTitle="Premium Soft Gel Manufacturing Solutions"
+  heroDescription="Drive product performance with high-fidelity soft gel manufacturing. From high-potency Omega-3s to complex oil-based suspensions, we provide the technical expertise and industrial capacity to scale your brand with superior bioavailability and shelf stability."
+  canonical="https://vitaorganica.com/manufacturing/soft-gels"
+  benefits={benefits}
+  capabilities={capabilities}
+  proofStats={proofStats}
+  customizationOptions={customizationOptions}
+  qualityStandards={qualityStandards}
+  faqs={faqs}
+/>

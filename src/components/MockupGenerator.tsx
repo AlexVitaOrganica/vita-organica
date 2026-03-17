@@ -7,7 +7,8 @@ const formatIcons: Record<string, React.ReactNode> = {
     capsules: <Pill size={24} />,
     gel: <FlaskConical size={24} />,
     powders: <GlassWater size={24} />,
-    spoons: <Utensils size={24} />
+    spoons: <Utensils size={24} />,
+    'soft-gels': <Pill size={24} />
 };
 
 interface MockupGeneratorProps {
@@ -162,6 +163,21 @@ const MockupGenerator: React.FC<MockupGeneratorProps> = ({ initialFormat }) => {
                     <div className="fade-in">
                         <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--color-green)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Step 01</span>
                         <h2 style={{ fontSize: '1.75rem', marginTop: '0.5rem', marginBottom: '1.5rem' }}>Select Format</h2>
+                        
+                        {error && (
+                            <div style={{ 
+                                padding: '1rem', 
+                                background: 'rgba(239, 68, 68, 0.1)', 
+                                border: '1px solid rgba(239, 68, 68, 0.2)', 
+                                borderRadius: 'var(--radius-lg)', 
+                                color: '#ef4444', 
+                                fontSize: '14px', 
+                                marginBottom: '1.5rem' 
+                            }}>
+                                <strong>Error:</strong> {error}
+                            </div>
+                        )}
+
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                             {Object.entries(MOCKUP_PRESETS).map(([slug, p]) => (
                                 <button key={slug} onClick={() => { setSelectedSlug(slug); setStep(2); }} className={`format-card ${selectedSlug === slug ? 'active' : ''}`}>

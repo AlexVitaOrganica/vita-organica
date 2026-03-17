@@ -7,25 +7,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   description="Explore our comprehensive range of supplement manufacturing solutions, from gummies and capsules to premium honey-based delivery systems."
 >
   {/* ── HERO SECTION ── */}
-  <section class="hero" style="padding: 120px 0 80px; text-align: center;">
+  <section class="hero-section">
     <div class="container">
-      <div
-        class="hero-content"
-        style="max-width: 800px; margin: 0 auto; float: none;"
-      >
+      <div class="hero-content" data-reveal>
         <span class="section-eyebrow">End-to-End Solutions</span>
-        <h1 style="margin-top: 1rem;">
-          Manufacturing <span class="highlight">Excellence</span>
-        </h1>
-        <p class="hero-subhead" style="margin: 1.5rem auto;">
-          From innovative formulations to retail-ready packaging, we provide the
-          industrial capacity and technical expertise required to scale your
-          supplement brand with confidence.
+        <h1>Manufacturing <span class="highlight">Excellence</span></h1>
+        <p class="hero-subhead">
+          From innovative formulations to retail-ready packaging, we provide the industrial capacity and technical expertise required to scale your supplement brand with confidence.
         </p>
-        <div class="cta-row" style="justify-content: center;">
-          <a href="/request-quote" class="btn btn-primary btn-lg"
-            >Start Your Project</a
-          >
+        <div class="cta-btn-row">
+          <a href="/request-quote" class="btn btn-primary btn-lg">Start Your Project</a>
           <a href="#capabilities" class="btn btn-ghost">Explore Formats</a>
         </div>
       </div>
@@ -102,6 +93,32 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             </p>
             <a href="/manufacturing/capsules" class="text-link"
               >Explore Capsules →</a
+            >
+          </div>
+          <div class="bento-bg"></div>
+        </div>
+
+        <!-- Soft Gels -->
+        <div class="bento-item standard">
+          <div class="bento-content">
+            <div class="tile-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2v20M2 12h20L12 2z"></path>
+              </svg>
+            </div>
+            <h3>Soft Gels</h3>
+            <p>
+              Premium oil-based delivery systems with superior bioavailability and shelf stability.
+            </p>
+            <a href="/manufacturing/soft-gels" class="text-link"
+              >Explore Soft Gels →</a
             >
           </div>
           <div class="bento-bg"></div>
@@ -193,28 +210,103 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  {/* ── FINAL CTA ── */}
-  <section
-    class="final-cta-section"
-    style="padding: 100px 0; background: var(--color-surface); text-align: center;"
-  >
+  <section class="final-cta-section">
     <div class="container">
-      <h2>Transform Your Product Vision into Reality</h2>
-      <p style="margin: 1.5rem 0 2rem; color: var(--color-ink-soft);">
-        Get a detailed cost breakdown and production timeline for your project
-        within 24–48 hours.
-      </p>
-      <div class="cta-btn-row" style="justify-content: center;">
-        <a href="/request-quote" class="btn btn-primary btn-lg"
-          >Request a Custom Quote</a
-        >
-        <a href="/about" class="btn btn-secondary">Our Certifications</a>
+      <div class="final-cta-inner">
+        <h2>Transform Your Product Vision into Reality</h2>
+        <p>Get a detailed cost breakdown and production timeline for your project within 24–48 hours.</p>
+
+        <div class="cta-steps">
+          <div class="cta-step">
+            <span class="cta-step-num">1</span>
+            <span>Book Your Call</span>
+          </div>
+          <span class="cta-arrow">→</span>
+          <div class="cta-step">
+            <span class="cta-step-num">2</span>
+            <span>Discuss Your Vision</span>
+          </div>
+          <span class="cta-arrow">→</span>
+          <div class="cta-step">
+            <span class="cta-step-num">3</span>
+            <span>Get a Custom Plan</span>
+          </div>
+        </div>
+
+        <div class="cta-btn-row">
+          <a href="/request-quote" class="btn btn-primary btn-lg">Request a Custom Quote</a>
+          <a href="/about" class="btn btn-secondary">Our Certifications</a>
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  .hero-section {
+    padding: var(--sp-24) 0 var(--sp-20);
+    text-align: center;
+    background: var(--color-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-section h1 {
+    font-size: var(--text-5xl);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--sp-6);
+    color: var(--color-ink);
+  }
+
+  .hero-subhead {
+    font-size: var(--text-lg);
+    color: var(--color-ink-soft);
+    line-height: 1.65;
+    margin-bottom: var(--sp-10);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btn-row {
+    display: flex;
+    gap: var(--sp-4);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Hero button contrast override */
+  .hero-section .btn-ghost {
+    color: var(--color-ink);
+    border-color: var(--color-border);
+  }
+
+  .hero-section .btn-ghost:hover {
+    background: var(--color-surface);
+    border-color: var(--color-ink-soft);
+  }
+
+  /* Final CTA button contrast override */
+  .final-cta-section .btn-secondary {
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .final-cta-section .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
   .bento-grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
