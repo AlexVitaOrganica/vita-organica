@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import designTeamHero from "../assets/images/design_team_hero.png";
+import packagingOptions from "../assets/images/packaging_options.png";
 ---
 
 <BaseLayout
@@ -37,11 +40,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <div class="pd-hero-visual" data-reveal>
           <div class="pd-hero-img">
-            <img
-              src="/images/design_team_hero.png"
+            <Image
+              src={designTeamHero}
               alt="Vita Organica's in-house design team collaborating on supplement label designs in a modern creative studio"
-              width="1024"
-              height="1024"
               fetchpriority="high"
             />
           </div>
@@ -194,11 +195,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <!-- Image side -->
         <div class="team-image-block" data-reveal>
           <div class="team-image-main">
-            <img
-              src="/images/packaging_options.png"
+            <Image
+              src={packagingOptions}
               alt="Range of premium supplement packaging options including bottles, pouches, sachets, and boxes with custom label designs"
-              width="1024"
-              height="1024"
               loading="lazy"
             />
           </div>

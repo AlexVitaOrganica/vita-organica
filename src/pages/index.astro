@@ -1,5 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import heroImg1 from "../assets/images/hero_img_1.png";
+import heroImg2 from "../assets/images/hero_img_2.png";
+import heroImg3 from "../assets/images/hero_img_3.png";
+import heroImg4 from "../assets/images/hero_img_4.png";
 ---
 
 <BaseLayout>
@@ -100,23 +105,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           <!-- Main image -->
           <div class="hero-img-main">
-            <img
-              src="/images/hero_img_1.png"
+            <Image
+              src={heroImg1}
               alt="State-of-the-art supplement manufacturing facility featuring automated production lines and sterile processing environments"
-              width="1536"
-              height="1024"
               class="hero-img-asset"
-              fetchpriority="high"
+              loading="eager"
             />
           </div>
 
           <!-- Secondary image -->
           <div class="hero-img-secondary">
-            <img
-              src="/images/hero_img_2.png"
+            <Image
+              src={heroImg2}
               alt="Close-up of premium dietary supplement capsules being precisely bottled in a cGMP certified facility"
-              width="1536"
-              height="1024"
               class="hero-img-secondary-asset"
               loading="lazy"
             />
@@ -530,11 +531,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <!-- Image side -->
         <div class="why-image-block" data-reveal>
           <div class="why-image-main">
-            <img
-              src="/images/hero_img_3.png"
+            <Image
+              src={heroImg3}
               alt="Vita Organica laboratory team conducting rigorous quality control testing on new supplement formulations"
-              width="1536"
-              height="1024"
               class="why-img-asset"
               loading="lazy"
             />
@@ -932,11 +931,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           <div class="guide-mockup-block">
             <div class="guide-thumb">
-              <img
-                src="/images/hero_img_4.png"
+              <Image
+                src={heroImg4}
                 alt="The cover of Vita Organica's Comprehensive Supplement Manufacturing Starter Guide"
-                width="1536"
-                height="1024"
                 class="guide-thumb-img"
                 loading="lazy"
               />
