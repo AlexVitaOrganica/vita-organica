@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { client, isConfigured } from '../../lib/sanity/client';
 import { postBySlugQuery, allSlugsQuery } from '../../lib/sanity/queries';
+import { urlForImage } from '../../lib/sanity/urlForImage';
 
 export async function getStaticPaths() {
   if (!isConfigured) {
@@ -41,7 +42,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": post?.title,
-  "image": post?.mainImage?.asset?._ref, // In real app, resolve URL
+  "image": urlForImage(post?.mainImage),
   "author": {
     "@type": "Person",
     "name": post?.author
@@ -79,8 +80,8 @@ const jsonLd = {
             </div>
           </header>
 
-          {post.mainImage && (
-            <img src={post.mainImage.asset._ref} alt={post.mainImage.alt || ""} style="width: 100%; border-radius: var(--radius-xl); margin-bottom: var(--sp-12);" />
+          {post.mainImage && urlForImage(post.mainImage) && (
+            <img src={urlForImage(post.mainImage)} alt={post.mainImage.alt || ""} style="width: 100%; border-radius: var(--radius-xl); margin-bottom: var(--sp-12);" loading="eager" />
           )}
 
           <div class="post-content" style="font-size: var(--text-lg); line-height: 1.8;">

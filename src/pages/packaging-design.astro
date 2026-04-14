@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import designTeamHero from "../assets/images/design_team_hero.png";
+import packagingOptions from "../assets/images/packaging_options.png";
 ---
 
 <BaseLayout
@@ -26,10 +29,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             roof.
           </p>
           <div class="cta-row">
-            <a href="/request-quote" class="btn btn-primary btn-lg"
-              >Start Your Design Project</a
+            <a href="/request-quote" class="btn btn-primary btn-lg" data-track="cta-click" data-cta-name="pack-quote"
+              >Get a Design Quote</a
             >
-            <a href="/manufacturing" class="btn btn-secondary"
+            <a href="/manufacturing" class="btn btn-secondary" data-track="cta-click" data-cta-name="pack-mfg"
               >View Manufacturing</a
             >
           </div>
@@ -37,11 +40,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <div class="pd-hero-visual" data-reveal>
           <div class="pd-hero-img">
-            <img
-              src="/images/design_team_hero.png"
+            <Image
+              src={designTeamHero}
               alt="Vita Organica's in-house design team collaborating on supplement label designs in a modern creative studio"
-              width="1024"
-              height="1024"
               fetchpriority="high"
             />
           </div>
@@ -194,11 +195,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <!-- Image side -->
         <div class="team-image-block" data-reveal>
           <div class="team-image-main">
-            <img
-              src="/images/packaging_options.png"
+            <Image
+              src={packagingOptions}
               alt="Range of premium supplement packaging options including bottles, pouches, sachets, and boxes with custom label designs"
-              width="1024"
-              height="1024"
               loading="lazy"
             />
           </div>
@@ -226,7 +225,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             compliant packaging design without the back-and-forth of managing
             external agencies.
           </p>
-          <a href="/request-quote" class="btn btn-primary">Get Started</a>
+          <a href="/request-quote" class="btn btn-primary" data-track="cta-click" data-cta-name="pack-start">Get Started</a>
         </div>
 
         <!-- Right: scrollable steps -->
@@ -581,10 +580,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
 
         <div class="cta-btn-row">
-          <a href="/request-quote" class="btn btn-primary btn-lg"
-            >Start Your Design Project</a
+          <a href="/request-quote" class="btn btn-primary btn-lg" data-track="cta-click" data-cta-name="pack-custom-quote"
+            >Request a Custom Design Quote</a
           >
-          <a href="/manufacturing" class="btn btn-ghost">View Manufacturing</a>
+          <a href="/manufacturing" class="btn btn-ghost" data-track="cta-click" data-cta-name="pack-mfg-ghost">View Manufacturing</a>
         </div>
 
         <p class="cta-sub-note">
