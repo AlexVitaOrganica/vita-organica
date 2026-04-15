@@ -56,6 +56,8 @@ interface Props {
   faqs: FAQ[];
   qualityStandards?: { title: string; description: string }[];
   canonical?: string;
+  title?: string;
+  description?: string;
 }
 
 const {
@@ -68,7 +70,12 @@ const {
   faqs,
   qualityStandards,
   canonical,
+  title: customTitle,
+  description: customDescription,
 } = Astro.props;
+
+const finalTitle = customTitle || `${formatName} Manufacturing | Vita Organica`;
+const finalDescription = customDescription || heroDescription;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -97,8 +104,8 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title={`${formatName} Manufacturing | Vita Organica`}
-  description={heroDescription}
+  title={finalTitle}
+  description={finalDescription}
   canonical={canonical}
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
