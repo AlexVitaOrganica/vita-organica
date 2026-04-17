@@ -97,3 +97,38 @@ const readTime = calculateReadTime(post?.body);
     </div>
   </article>
 </BaseLayout>
+
+<style is:global>
+  .post-content p {
+    margin-bottom: var(--sp-6);
+  }
+  .post-content h2, .post-content h3, .post-content h4 {
+    margin: var(--sp-10) 0 var(--sp-4);
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1.2;
+  }
+  .post-content h2 { font-size: 2rem; }
+  .post-content h3 { font-size: 1.5rem; }
+  .post-content ul, .post-content ol {
+    margin-bottom: var(--sp-6);
+    padding-left: var(--sp-8);
+  }
+  .post-content ul { list-style-type: disc; }
+  .post-content ol { list-style-type: decimal; }
+  .post-content li { margin-bottom: var(--sp-2); }
+  .post-content blockquote {
+    border-left: 4px solid var(--color-teal);
+    padding-left: var(--sp-4);
+    font-style: italic;
+    color: var(--color-ink-soft);
+    margin-bottom: var(--sp-6);
+  }
+  .post-content a {
+    color: var(--color-teal);
+    text-decoration: underline;
+  }
+  .post-content strong {
+    font-weight: 700;
+  }
+</style>
