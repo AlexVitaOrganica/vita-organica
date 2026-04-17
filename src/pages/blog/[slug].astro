@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { client, isConfigured } from '../../lib/sanity/client';
 import { postBySlugQuery, allSlugsQuery } from '../../lib/sanity/queries';
 import { urlForImage } from '../../lib/sanity/urlForImage';
-import { PortableText } from '@portabletext/react';
+import PortableTextWrapper from '../../components/PortableTextWrapper.tsx';
 
 export async function getStaticPaths() {
   if (!isConfigured) {
@@ -86,7 +86,7 @@ const jsonLd = {
           )}
 
           <div class="post-content" style="font-size: var(--text-lg); line-height: 1.8;">
-            <PortableText value={post.body} />
+            <PortableTextWrapper content={post.body} />
           </div>
         </>
       )}
