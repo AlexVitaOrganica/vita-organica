@@ -15,7 +15,7 @@ const getPresetSlug = (name: string) => {
   if (n.includes('capsule')) return 'capsules';
   if (n.includes('powder')) return 'powders';
   if (n.includes('honey gel')) return 'gel';
-  if (n.includes('honey spoon')) return 'spoons';
+  if (n.includes('sachet') || n.includes('honey spoon') || n.includes('spoon')) return 'spoons';
   if (n.includes('soft gel')) return 'soft-gels';
   return 'gummies'; // Default fallback
 };
@@ -27,7 +27,7 @@ const initialFormat = getPresetSlug(formatName);
   <div class="container">
     <div class="section-header" data-reveal>
       <span class="section-eyebrow">Visual Experience</span>
-      <h2>Visualize Your {formatName} Product</h2>
+      <h2 id="mockup-heading">Visualize Your {formatName} Product</h2>
       <p class="section-subhead">See what your branding will look like on our premium, retail-ready formats instantly.</p>
     </div>
     
@@ -39,3 +39,12 @@ const initialFormat = getPresetSlug(formatName);
     </div>
   </div>
 </section>
+
+<script>
+  window.addEventListener('mockup:formatChange', (e: Event) => {
+    const heading = document.getElementById('mockup-heading');
+    if (heading) {
+      heading.textContent = `Visualize Your ${(e as CustomEvent).detail.label} Product`;
+    }
+  });
+</script>

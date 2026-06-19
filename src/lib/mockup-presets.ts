@@ -50,7 +50,7 @@ export const MOCKUP_PRESETS: Record<string, MockupPreset> = {
         exportScale: 2.0,
     },
     spoons: {
-        label: 'Honey Spoon',
+        label: 'Sachets',
         templateSrc: '/mockups/spoons.png',
         labelBox: { x: 430, y: 250, w: 140, h: 600 },
         exportScale: 2.0,

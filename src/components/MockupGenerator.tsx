@@ -101,6 +101,10 @@ const MockupGenerator: React.FC<MockupGeneratorProps> = ({ initialFormat }) => {
         render();
     }, [render]);
 
+    useEffect(() => {
+        window.dispatchEvent(new CustomEvent('mockup:formatChange', { detail: { label: preset.label } }));
+    }, [selectedSlug]);
+
     const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;

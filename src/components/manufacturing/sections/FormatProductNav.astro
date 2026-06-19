@@ -3,7 +3,7 @@
 const products = [
   { label: "Gummies", href: "/manufacturing/gummies", active: true },
   { label: "Powders", href: "/manufacturing/powders", active: true },
-  { label: "Honey Spoons", href: "/manufacturing/spoons", active: true },
+  { label: "Sachets", href: "/manufacturing/spoons", active: true },
   { label: "Honey Gels", href: "/manufacturing/gel", active: true },
   { label: "Capsules", href: "/manufacturing/capsules", active: true }
 ];
@@ -19,7 +19,7 @@ const isMatch = (current: string, label: string) => {
   const mappings: Record<string, string[]> = {
     'gummies': ['gummy', 'gummies'],
     'powders': ['powder', 'powders'],
-    'honey spoons': ['spoon', 'spoons', 'honey spoon', 'stick pack'],
+    'sachets': ['sachet', 'sachets', 'spoon', 'spoons', 'stick pack'],
     'honey gels': ['gel', 'gels', 'honey gel', 'specialty gel'],
     'capsules': ['capsule', 'capsules']
   };
@@ -36,7 +36,7 @@ const isMatch = (current: string, label: string) => {
   <div class="container">
     <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
       <span class="section-eyebrow">Product Types</span>
-      <h2>Specialized Delivery Systems</h2>
+      <h2>Manufacturing Formats</h2>
     </div>
     <div style="display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 1rem; justify-content: center; -webkit-overflow-scrolling: touch; flex-wrap: wrap;">
       {products.map(product => {
