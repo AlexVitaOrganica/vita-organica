@@ -5,7 +5,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 const TO = 'noelsajor@gmail.com';
-const FROM = 'submissions@vitaorganicasupps.com';
+const FROM = 'onboarding@resend.dev';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
