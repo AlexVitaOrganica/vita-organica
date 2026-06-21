@@ -6,6 +6,6 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
     site: 'https://vita-organica.com',
     integrations: [react(), sitemap()],
-    output: 'hybrid',
+    output: 'static',
     adapter: vercel(),
 });
