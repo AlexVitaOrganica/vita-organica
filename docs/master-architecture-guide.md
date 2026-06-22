@@ -41,9 +41,10 @@ This template serves as an "Agency Master" — a robust, highly-documented, and 
 *   **Performance-Critical SEO:** Uses Astro Static Site Generation to guarantee near-perfect Lighthouse scores and immediate indexing without heavy JavaScript bloat.
 
 ## 2. Technology Stack
-*   **Core Framework**: Astro (v6.x) with SSG (Static Site Generation)
+*   **Core Framework**: Astro (v5.x) with `output: 'static'` + `@astrojs/vercel` adapter
 *   **UI Components**: React (v19.x) integrated via `@astrojs/react` for interactive UI Islands.
 *   **CMS / Data layer**: Sanity with `groq` queries mapping to Astro content.
+*   **Email**: Resend — transactional email for all form submissions via `/api/contact`.
 *   **Icons**: Lucide React.
 *   **CSS**: Vanilla CSS utilizing robust CSS Variables for a highly flexible design system.
 
@@ -88,6 +89,11 @@ Data fetching occurs server-side inside the standard Astro frontmatter (`---`).
 
 ## 6. Build & Deployment Rules
 
-*   **Build Command**: `astro build` exports a purely static site to the `/dist` directory.
-*   **Hosting**: The project is optimized for deployment via Vercel or similar static hosting. `astro.config.mjs` is set to `output: 'static'`.
-*   **Sitemaps**: Powered dynamically by `@astrojs/sitemap`. Make sure the `site` property in `astro.config.mjs` accurately matches the live production domain for SEO validation.
+*   **Build Command**: `astro build` — outputs static pages to `/dist`, serverless functions via `@astrojs/vercel`.
+*   **Output Mode**: `output: 'static'` with `@astrojs/vercel` adapter. All pages are pre-rendered. API routes opt out with `export const prerender = false`.
+*   **Hosting**: Vercel. The `@astrojs/vercel` adapter is required — do not remove it.
+*   **Sitemaps**: Powered by `@astrojs/sitemap`. Ensure the `site` property in `astro.config.mjs` matches the live production domain.
+*   **Required Environment Variables**:
+    *   `PUBLIC_SANITY_PROJECT_ID` — Sanity project ID
+    *   `PUBLIC_SANITY_DATASET` — Sanity dataset name
+    *   `RESEND_API_KEY` — Resend API key for form email delivery (never expose with `PUBLIC_` prefix)

@@ -15,6 +15,8 @@ Before pushing any client project to production, the following checks are mandat
 
 ## 3. Functionality Checks
 *   **Forms:** Test all contact forms/inputs. Ensure honeypots block spam and success messages display correctly.
+*   **Email delivery:** Submit each form type (`quote`, `guide`, `mockup`) and confirm emails arrive at the configured `TO` address. Check Resend → Logs for delivery status if emails are missing.
+*   **Resend domain:** Confirm the sending domain is verified in Resend → Domains before going live. Unverified domains will cause all email sends to fail silently.
 *   **Links:** Crawl the site to resolve any 404 dead links or redirect loops.
 *   **404 Page:** Verify that `404.astro` exists and routes correctly when an unknown path is visited.
 
