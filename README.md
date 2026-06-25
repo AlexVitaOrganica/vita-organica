@@ -1,35 +1,49 @@
-# Agency Master Operation Template
+# Vita Organica — Website
 
-Welcome to the ultimate starter template for deploying high-converting, SEO-optimized marketing sites using Astro, React, and Sanity.
+Official website for **Vita Organica Supplements** — [vitaorganicasupps.com](https://vitaorganicasupps.com)
 
-## 🛑 STOP & READ THIS FIRST
+## Tech Stack
 
-**If you are cloning this repository to build a new client website, DO NOT start coding immediately.**
+- **Framework:** Astro v5 (static site generation)
+- **UI:** React components for interactive sections
+- **CMS:** Sanity — manage blog posts and content
+- **Email:** Resend — handles all form submissions
+- **Hosting:** Vercel — auto-deploys on every push to `main`
 
-Your first step is to open the [First Kick Prompt](docs/first-kick-prompt-template.md). Copy the prompt provided in that document and feed it to your AI coding assistant (Cursor, Claude, etc.) to securely clone and contextualize this setup for your new client.
+## How the site works
 
----
+- Any push to the `main` branch automatically triggers a new deployment on Vercel
+- Any content published in Sanity automatically triggers a site rebuild
+- All form submissions (quote requests, guide downloads, mockup leads) are delivered to `alex@vitaorganicasupps.com`
 
-## 📚 Documentation Index
+## Managing content
 
-All standard operating procedures and technical guides are housed securely within our `docs/` directory.
+Blog posts and site content are managed through **Sanity Studio**.
 
-- [AI Cloning Setup (First Kick Prompt)](docs/first-kick-prompt-template.md)
-- [Master Architecture Guide](docs/master-architecture-guide.md)
-- [Deployment & Webhooks](DEPLOYMENT_GUIDE.md)
-- [Client Handoff Manual](docs/client-handoff-manual.md)
+- Project ID: `wh5eeb8c`
+- Dataset: `production`
 
-### Strict Standard Operating Procedures (SOPs)
-Please adhere to these playbooks before making systemic changes:
-1. [SEO & GEO Guidelines](docs/best-practices/01-seo-geo-guidelines.md)
-2. [UI/UX & Accessibility](docs/best-practices/02-ui-ux-standards.md)
-3. [Frontend Architecture](docs/best-practices/03-frontend-development.md)
-4. [Testing & QA Checklist](docs/best-practices/04-testing-qa-checklist.md)
-5. [Backend & CMS Setup](docs/best-practices/05-backend-database-architecture.md)
-6. [Cybersecurity & Headers](docs/best-practices/06-cybersecurity-standards.md)
-7. [Analytics & Conversion](docs/best-practices/07-analytics-conversion-standards.md)
-8. [GitHub Workflow](docs/best-practices/08-github-commit-standards.md)
-9. [Formatting & Linting](docs/best-practices/09-code-formatting-linting.md)
+## Environment variables
 
----
-*Built with ❤️ utilizing Astro, React, and Vanilla CSS.*
+The following variables must be set in Vercel for the site to function:
+
+| Variable | Description |
+|---|---|
+| `SANITY_PROJECT_ID` | Sanity project identifier |
+| `SANITY_DATASET` | Sanity dataset name |
+| `SANITY_API_VERSION` | Sanity API version |
+| `SANITY_USE_CDN` | Enable Sanity CDN caching |
+| `RESEND_API_KEY` | Resend API key for form email delivery |
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+The site runs at `http://localhost:4321`.
+
+## Contact
+
+For technical support, contact your development team.
