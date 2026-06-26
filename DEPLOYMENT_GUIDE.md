@@ -1,63 +1,56 @@
-# Deployment & Webhooks Integration
+# Deployment Guide
 
-This guide outlines the proper deployment workflow for taking this Agency Master template into production, ensuring CI/CD flows and CMS synchronization.
+## Hosting
 
-## 1. Hosting Environment
-We optimize out-of-the-box for **Vercel** or **Netlify**, given their excellent support for Astro and SSR features if needed.
+This project is deployed on **Vercel**, connected to the `main` branch of `github.com/AlexVitaOrganica/vita-organica`. Every push to `main` triggers an automatic rebuild and deployment.
 
-### Steps to Deploy to Vercel
-1. Push the customized repository to GitHub.
-2. In the Vercel Dashboard, select "Add New Project" and import your repository.
-3. **Framework Preset:** Select "Astro". (Vercel usually detects this automatically).
-4. **Environment Variables:** Add the following keys in Vercel → Settings → Environment Variables:
-   - `PUBLIC_SANITY_PROJECT_ID`
-   - `PUBLIC_SANITY_DATASET`
-   - `RESEND_API_KEY` *(required for form email delivery — see Section 4)*
-5. Deploy.
+## Package manager
 
-## 2. Security Headers (Vercel)
-A `vercel.json` file is included in the root directory. This explicitly secures the frontend with `Content-Security-Policy` and `Strict-Transport-Security` headers. **DO NOT delete this file** unless migrating to a host that requires a different configuration format (like `netlify.toml`). Ensure the CSP settings match your image sources (see [Cybersecurity Standards](docs/best-practices/06-cybersecurity-standards.md)).
+This project uses **pnpm**. Do not use npm or yarn.
 
-## 3. Output Mode & Adapter
-This project uses `output: 'static'` with the `@astrojs/vercel` adapter. All pages are pre-rendered as static HTML at build time. The `/api/contact` endpoint opts out of prerendering via `export const prerender = false`, running as a Vercel Serverless Function. This replaces the old "hybrid" output mode removed in Astro v5.
+```bash
+pnpm install   # install dependencies
+pnpm dev       # local development (http://localhost:4321)
+pnpm build     # production build
+```
 
-## 4. Email Integration (Resend)
-All form submissions (quote requests, guide downloads, mockup exports) are delivered via [Resend](https://resend.com).
+## Environment variables
 
-### Setup
-1. Create a Resend account at resend.com.
-2. Go to **API Keys** → **Create API Key** → copy the `re_...` value.
-3. Add it to Vercel as `RESEND_API_KEY` (never prefix with `PUBLIC_`).
-4. Add it to your local `.env` file for development.
+Set in Vercel → Project → Settings → Environment Variables.
 
-### Domain verification (required for production)
-1. In Resend → **Domains** → Add `vitaorganicasupps.com`.
-2. Add the provided DNS records (MX, TXT, DKIM) in your domain registrar.
-3. Once verified, emails send from `submissions@vitaorganicasupps.com`.
+| Variable | Description |
+|---|---|
+| `SANITY_PROJECT_ID` | Sanity project ID (`wh5eeb8c`) |
+| `SANITY_DATASET` | Sanity dataset (`production`) |
+| `SANITY_API_VERSION` | Sanity API version (`2023-05-03`) |
+| `SANITY_USE_CDN` | CDN caching (`true`) |
+| `RESEND_API_KEY` | Resend API key for form email delivery |
 
-### Email endpoint
-- File: `src/pages/api/contact.ts`
-- `TO`: `alex@vitaorganicasupps.com`
-- `FROM`: `submissions@vitaorganicasupps.com`
-- Handles 3 form types: `quote` | `guide` | `mockup`
-- Honeypot field (`b_name`) silently drops bot submissions
+For local development, copy these into a `.env` file at the project root.
 
-### Testing before domain verification
-Set `FROM` temporarily to `onboarding@resend.dev` — it delivers only to the Resend account owner's email address.
+## Output mode & adapter
 
-## 5. Webhook Integration (Sanity CMS)
-Since pages are statically generated, Sanity updates will not go live instantly unless you trigger a rebuild.
+Uses `output: 'static'` with the `@astrojs/vercel` adapter. All pages are pre-rendered as static HTML at build time. The `/api/contact` endpoint opts out via `export const prerender = false` and runs as a Vercel Serverless Function.
 
-### How to set up the Sanity Rebuild Webhook:
-1. **In Vercel:** Go to Project Settings -> Git -> Deploy Hooks. Create a hook named "Sanity Content Update" targeting your `main` branch. Copy the URL.
-2. **In Sanity Dashboard:** Navigate to your project settings -> API -> Webhooks.
-3. Click "Add Webhook".
-4. **URL:** Paste the Vercel Hook URL.
-5. **Dataset:** Your active dataset (usually `production`).
-6. **Trigger on:** Create, Update, Delete.
-7. Save the webhook.
+## Email (Resend)
 
-Now, anytime a client presses "Publish" on an article in the Sanity Studio (see [Client Handoff Manual](docs/client-handoff-manual.md)), Vercel will automatically fetch the new data and rebuild the static site.
+All form submissions are routed through `src/pages/api/contact.ts`.
 
----
-For pre-launch verification, always run through the [Testing & QA Checklist](docs/best-practices/04-testing-qa-checklist.md).
+- **TO:** `alex@vitaorganicasupps.com`
+- **FROM:** `submissions@vitaorganicasupps.com`
+- **Form types handled:** `quote` | `guide` | `mockup`
+- **Spam protection:** honeypot field (`b_name`) silently drops bot submissions
+
+The sending domain `vitaorganicasupps.com` must be verified in Resend → Domains before production emails will deliver. During development, temporarily set `FROM` to `onboarding@resend.dev` to test without domain verification.
+
+## Sanity webhook
+
+When content is published in Sanity, a webhook triggers an automatic Vercel rebuild.
+
+To update or recreate the webhook:
+1. **Vercel:** Project → Settings → Git → Deploy Hooks → create hook targeting `main` branch → copy URL
+2. **Sanity:** Project → API → Webhooks → edit "Trigger Vercel Build" → paste new URL
+
+## Security headers
+
+A `vercel.json` file at the project root sets `Content-Security-Policy` and `Strict-Transport-Security` headers. Do not delete it.

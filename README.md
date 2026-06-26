@@ -38,8 +38,8 @@ The following variables must be set in Vercel for the site to function:
 ## Local development
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 The site runs at `http://localhost:4321`.
